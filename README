@@ -1,3 +1,10 @@
-This is a sample application that supplements http://github.com/yar/i18n_db - a Rails-2.2 internationalization backend.
+This is a sample application that complements http://github.com/yar/i18n_db - a Rails-2.2 internationalization backend.
 
-The app demonstrates the administrative interface for translators.
+The app demonstrates administrative interface for translators.
+
+After checking out, do not forget to run:
+
+git submodule init
+git submodule update
+
+so that vendor/rails and vendor/plugins/i18n_db get populated.
