@@ -1,0 +1,32 @@
+<style>
+  .err { color: #C33;}
+  td.ns { color: #559; vertical-align: bottom; font-family: Verdana;}
+</style>
+
+<h1>Listing translations</h1>
+<div style="text-align: left;">
+<table style="text-align: left;">
+  <tr>
+    <th>Key</th>
+    <th>Text</th>
+    <th colspan="3">&nbsp;</th>
+  </tr>
+  <% @groups.each_with_index do |(namespace, translations), i| %>
+    <tr>
+      <td colspan="2" class="ns"<% unless i==0 %> style="height: 60px;"<% end %>>
+        Namespace: <strong><%= namespace || "none" %></strong>
+      </td>
+    </tr>
+    <% for translation in translations %>
+      <tr>
+        <td<%= ' class="err"' if translation.text.blank? %>><%=h translation.tr_key %></td>
+        <td><%=h translation.text %></td>
+        <td><%= link_to 'Edit', edit_admin_locale_translation_path(@locale, translation) %></td>
+        <td><%= link_to 'Destroy', admin_locale_translation_url(@locale, translation), :confirm => 'Are you sure?', :method => :delete %></td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
+<br />
+</div>
+<%= link_to 'New translation', new_admin_locale_translation_path(@locale) %>

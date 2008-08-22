@@ -1,0 +1,22 @@
+<h1>Editing locale</h1>
+
+<%= error_messages_for :locale %>
+
+<% form_for(:locale, @locale, :url => admin_locale_path(@locale), :html => { :method => :put }) do |f| %>
+  <p>
+    <b>ISO name</b><br />
+    <%= f.text_field :iso %>
+  </p>
+
+  <p>
+    <b>Language code (2-letter)</b><br />
+    <%= f.text_field :short %>
+  </p>
+
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', admin_locale_url(@locale) %> |
+<%= link_to 'Back', admin_locales_path %>
