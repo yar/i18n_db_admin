@@ -4,3 +4,6 @@
 [submodule "vendor/plugins/i18n_db"]
 	path = vendor/plugins/i18n_db
 	url = git://github.com/yar/i18n_db.git
+[submodule "vendor/plugins/simple_loc_compat"]
+	path = vendor/plugins/simple_loc_compat
+	url = git://github.com/yar/simple_loc_compat.git
