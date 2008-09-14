@@ -1,4 +1,6 @@
 class Admin::LocalesController < ApplicationController
+  layout "admin"
+  
   def index
     @locales = Locale.find :all, :order => "iso"
   end

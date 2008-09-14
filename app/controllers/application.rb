@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   layout 'application'
   
   def choose_and_set_locale
+    set_locale('en-US') # Loading the default (fallback) locale
     set_locale('ru-RU')
-    # set_locale('en-US')
   end
 end

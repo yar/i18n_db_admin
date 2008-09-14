@@ -1,4 +1,6 @@
 class Admin::TranslationsController < ApplicationController
+  layout "admin"
+
   before_filter :find_locale
   
   def find_locale

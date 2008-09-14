@@ -1,3 +1,13 @@
-<p>---- <%= I18n.t(:hello) %> ++++</p>
-<p>---- <%= I18n.t(:foo, :scope => [:bar, :qux]) %> ++++</p>
-<p>---- <%= I18n.t(:randomstr, :scope => [:bar, :qux]) %> ++++</p>
+<p>Simple translation: <strong><%= I18n.t(:hello) %></strong></p>
+<p>Namespaced translation: <strong><%= I18n.t(:foo, :scope => [:bar, :qux]) %></strong></p>
+<p>Missing translation: <strong><%= I18n.t(:randomstr, :scope => [:bar, :qux]) %></strong></p>
+    
+<p>Simple Localization l-helper: <strong><%= ll(:layout, :terms) %></strong></p>
+<p>Simple Localization l-helper with substitution: <strong><%= ll(:hindcasts, :show, :periods_a_through_b, :a => 1, :b => 7) %></strong></p>
+
+<% l_scope :countries, :index do %>
+  <p>Simple Localization l-helper inside l_scope: <strong><%= ll(:forecasts_by_countries) %></strong></p>
+  <p>Simple Localization l-helper inside l_scope, with missing translation: <strong><%= ll(:forecasts_by_countries_nonex) %></strong></p>
+<% end %>
+
+<p>Simple Localization lc-helper: <strong><%= lc(:book_holiday) %></strong></p>
