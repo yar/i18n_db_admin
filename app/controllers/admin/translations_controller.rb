@@ -2,14 +2,41 @@ class Admin::TranslationsController < ApplicationController
   layout "admin"
 
   before_filter :find_locale
+  protect_from_forgery :only => []
+
+  # in_place_edit_for :translation, :text
   
   def find_locale
     @locale = Locale.find(params[:locale_id])
+    unless @locale.main
+      @main_locale = Locale.find_main_cached
+    end
   end
   
-  def index
-    translations = @locale.translations.find :all, :order => "namespace, id"
-    @groups = translations.group_by(&:namespace)
+  def index    
+    @groups = @main_locale.translations.find(:all, :order => "namespace, id").group_by(&:namespace)
+  end
+  
+  def update_in_place
+    @field_name = params["editorId"]
+    main_translation = @main_locale.translations.find params[:id]
+    @translation = main_translation.counterpart_in(@locale)
+    @translation.text = params[:value]
+    if @translation.save
+      if session[:unsaved]
+        session[:unsaved][@field_name] = nil
+      end
+      # render :text => translation.text.blank? ? '<span class="inplaceeditor-empty">click to edit…</span>' : ERB::Util.h(translation.text)
+    else
+      # since the save failed, we need to store the unsaved field 
+      # data into our session variable - notice we are using
+      # a hash within the session - just in case they start to 
+      # edit two different fields at once without saving, this 
+      # hash will keep track of what data goes with what field
+      session[:unsaved] ||= {}
+      session[:unsaved][@field_name] = params[:value]
+    end
+    # falls through to RJS template
   end
 
   def show

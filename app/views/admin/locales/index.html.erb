@@ -11,6 +11,7 @@
   <tr>
     <td><%=h locale.iso %></td>
     <td><%=h locale.short %></td>
+    <td><%= "Main" if locale.main %></td>
     <td><%= link_to 'Translations', admin_locale_translations_url(locale) %></td>
     <td><%= link_to 'Edit', edit_admin_locale_path(locale) %></td>
     <td><%= link_to 'Destroy', admin_locale_url(locale), :confirm => 'Are you sure?', :method => :delete %></td>

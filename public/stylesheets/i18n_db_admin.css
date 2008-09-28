@@ -1,0 +1,23 @@
+/* Translation colours */
+.miss { background-color: #FDD; }
+.obs { color: #CC3; }
+td.ns { color: #559; vertical-align: bottom; font-family: Verdana; }
+.key { color: #559;}
+div.tr_ed div { height: 20px; width: 1px; float: right; }
+td.transl { color: #999; }
+div.tr_ed { color: #333; border-top: dashed 1px #DDD; margin-top: 5px; }
+form.inplaceeditor-form input[type="submit"] { /* The submit button */
+  width: 4em;
+}
+form.inplaceeditor-form a { /* The cancel link */
+  margin-left:1em;
+}
+.inplaceeditor-empty {
+    font-style: italic;
+    color: #999;
+}
+td.transl div.errorExplanation h2 {
+  font-size: 120%;
+  padding-top: 0.5em;
+  margin: 0.5em 0;
+}
