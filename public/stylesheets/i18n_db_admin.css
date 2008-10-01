@@ -3,9 +3,10 @@
 .obs { color: #CC3; }
 td.ns { color: #559; vertical-align: bottom; font-family: Verdana; }
 .key { color: #559;}
+div.main { border-bottom: dashed 1px #DDD; margin-bottom: 5px; }
 div.tr_ed div { height: 20px; width: 1px; float: right; }
 td.transl { color: #999; }
-div.tr_ed { color: #333; border-top: dashed 1px #DDD; margin-top: 5px; }
+div.tr_ed { color: #333; margin-top: 5px; }
 form.inplaceeditor-form input[type="submit"] { /* The submit button */
   width: 4em;
 }
@@ -21,3 +22,4 @@ td.transl div.errorExplanation h2 {
   padding-top: 0.5em;
   margin: 0.5em 0;
 }
+div.errorExplanation { background-color: #EEE;}

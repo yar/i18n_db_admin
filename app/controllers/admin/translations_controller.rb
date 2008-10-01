@@ -8,7 +8,9 @@ class Admin::TranslationsController < ApplicationController
   
   def find_locale
     @locale = Locale.find(params[:locale_id])
-    unless @locale.main
+    if @locale.main
+      @main_locale = @locale
+    else
       @main_locale = Locale.find_main_cached
     end
   end

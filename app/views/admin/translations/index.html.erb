@@ -16,8 +16,10 @@
       <% loc_translation = translation.counterpart_in(@locale) %>
       <tr>
         <td class="key">:<%=h translation.tr_key %></td>
-        <td class="transl<%= " miss" if loc_translation.text.blank? || (loc_translation.text == translation.text) %>">
-          <%=h translation.text %>
+        <td class="transl<%= " miss" if loc_translation.text.blank? || (loc_translation.text == translation.text && !@locale.main?) %>">
+          <% unless @locale.main? %>
+            <div class="main"><%=h translation.text %></div>
+          <% end %>
           <div id="errors_for_ed<%= tr_num %>"></div>
           <div class="tr_ed" id="<%= "ed#{tr_num}" %>"><%=h loc_translation.text %></div>
           <script type="text/javascript">

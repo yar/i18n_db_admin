@@ -10,5 +10,9 @@ end
 if session[:unsaved] and session[:unsaved][@field_name]
   page["#{@field_name}"].replace_html h(session[:unsaved][@field_name])
 else
-  page["#{@field_name}"].replace_html @translation.text.blank? ? '<span class="inplaceeditor-empty">click to edit…</span>' : h(@translation.text)
+  if @translation.text.blank?
+    page["#{@field_name}"].replace_html '<span class="inplaceeditor-empty">click to edit…</span>'
+  else
+    page["#{@field_name}"].replace_html h(@translation.text)
+  end
 end
