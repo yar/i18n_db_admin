@@ -1,5 +1,5 @@
-class Admin::TranslationsController < ApplicationController
-  layout "admin"
+class TranslationsController < ApplicationController
+  layout "translator"
 
   before_filter :find_locale
   protect_from_forgery :only => []
@@ -8,7 +8,9 @@ class Admin::TranslationsController < ApplicationController
   
   def find_locale
     @locale = Locale.find(params[:locale_id])
-    if @locale.main
+    ## Of course, you can authorize users to edit the translations as you wish, for example:
+    # raise "No access" unless @current_member.locales.find(:all).include? @locale
+    if @locale.main?
       @main_locale = @locale
     else
       @main_locale = Locale.find_main_cached

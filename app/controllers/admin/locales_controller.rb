@@ -36,7 +36,7 @@ class Admin::LocalesController < ApplicationController
     respond_to do |format|
       if @locale.update_attributes(params[:locale])
         flash[:notice] = 'Locale was successfully updated.'
-        format.html { redirect_to(admin_locale_url(@locale)) }
+        format.html { redirect_to(admin_locales_url) }
       else
         format.html { render :action => "edit" }
       end

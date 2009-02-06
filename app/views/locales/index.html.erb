@@ -1,0 +1,39 @@
+<h1>Your localizatons:</h1>
+
+<table>
+  <tr>
+    <th>Language &ndash; Country</th>
+    <th>Completeness</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% for locale in @locales %>
+  <% 
+    percentage = (locale.completeness * 100).round 
+    colour = "#0F0"
+    colour = "#AE5" if locale.completeness < 1
+    colour = "#EE4" if locale.completeness < 0.95
+    colour = "#F55" if locale.completeness < 0.9
+    colour = "#F55" if locale.completeness < 0.8
+  %>
+  <tr>
+    <td style="font-weight: bold;"><%=h locale.iso %></td>
+    <td style="font-weight: bold;">
+      <div style="width: <%= percentage*2 %>px; height: 10px; background-color: <%= colour %>"></div>
+      <%=h percentage %>%
+    </td>
+    <td><%= link_to("Edit translations", locale_translations_path(locale)) %></td>
+    <td><%= link_to_remote("Reload cache", :url => reload_locale_path(locale), :method => :post) %></td>
+  </tr>
+<% end %>
+</table>
+
+<div style="text-align: left;">
+  <p>
+    Please check the translation pages periodically and make sure that there are no missing or outdated bits. New strings for translation will appear there automatically.
+  </p>
+  <p>
+    When finished, make your changes visible on the site by clicking "Reload cache" above.
+  </p>
+</div>

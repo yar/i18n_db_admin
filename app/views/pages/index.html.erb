@@ -6,8 +6,10 @@
 <p>Simple Localization l-helper with substitution: <strong><%= ll(:hindcasts, :show, :periods_a_through_b, :a => 1, :b => 7) %></strong></p>
 
 <% l_scope :countries, :index do %>
-  <p>Simple Localization l-helper inside l_scope: <strong><%= ll(:forecasts_by_countries) %></strong></p>
+  <p>Simple Localization l-helper inside l_scope namespace: <strong><%= ll(:forecasts_by_countries) %></strong></p>
   <p>Simple Localization l-helper inside l_scope, with missing translation: <strong><%= ll(:forecasts_by_countries_nonex) %></strong></p>
+  <p>lnc-helper ignores l_scope: <strong><%= lnc(:hindcasts, :dates, :choose_day) %></strong></p>
 <% end %>
 
 <p>Simple Localization lc-helper: <strong><%= lc(:book_holiday) %></strong></p>
+
