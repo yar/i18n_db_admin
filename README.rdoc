@@ -2,7 +2,7 @@
 
 A sample application that demonstrates usage of two i18n-related plugins:
 
-1. i18n_db[http://github.com/yar/i18n_db] - a Rails-2.2 internationalization backend driven by sql and memcached.
+1. i18n_db[http://github.com/yar/i18n_db] - a Rails-2.2+ internationalization backend driven by sql and memcached.
 2. simple_loc_compat[http://github.com/yar/simple_loc_compat] - a set of i18n helper methods that mimic those of the excellent {Simple Localization}[http://simple-localization.arkanis.de/] plugin which stopped its development in October 2008.
 
 In addition, this sample app contains a convenient ajaxified translations editor and a simple locale list editor.
