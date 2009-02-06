@@ -1,6 +1,7 @@
 /* Translation colours */
 .miss { background-color: #FDD; }
-.obs { color: #CC3; }
+.old { background-color: #EEB; }
+.susp { background-color: #BEE; }
 td.ns { color: #559; vertical-align: bottom; font-family: Verdana; }
 .key { color: #559;}
 div.main { border-bottom: dashed 1px #DDD; margin-bottom: 5px; }
