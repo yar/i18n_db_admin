@@ -21,3 +21,5 @@ config.action_controller.perform_caching             = true
 # config.action_mailer.raise_delivery_errors = false
 
 # config.log_level = :debug
+config.cache_store = :mem_cache_store, { :namespace => 'i18n_ad_admin' }
+

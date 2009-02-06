@@ -1,10 +1,32 @@
-This is a sample application that complements http://github.com/yar/i18n_db - a Rails-2.2 internationalization backend.
+=Db-driven i18n demo app
 
-The app demonstrates administrative interface for translators.
+A sample application that demonstrates usage of two i18n-related plugins:
+
+1. i18n_db[http://github.com/yar/i18n_db] - a Rails-2.2 internationalization backend driven by sql and memcached.
+2. simple_loc_compat[http://github.com/yar/simple_loc_compat] - a set of i18n helper methods that mimic those of the excellent {Simple Localization}[http://simple-localization.arkanis.de/] plugin which stopped its development in October 2008.
+
+In addition, this sample app contains a convenient ajaxified translations editor and a simple locale list editor.
 
 After checking out, do not forget to run:
 
-git submodule init
-git submodule update
+  git submodule init
+  git submodule update
 
-so that vendor/rails and vendor/plugins/i18n_db get populated.
+so that the plugin directories get populated.
+
+There is an SQL file with the sample translations content in the project dir. Create the db and load it, e.g.:
+
+  rake db:create
+  mysql i18n_db_admin_development < i18n_sample.sql
+
+Start the application and check out the following local pages (assuming that you aliased <em>i18n_db_admin.local</em> with localhost for this app):
+
+http://i18n_db_admin.local/locales:: translator homepage
+http://i18n_db_admin.local:: compare with the view template in app/views/pages/index.html.erb
+http://i18n_db_admin.local/1/translations:: main locale editor
+http://i18n_db_admin.local/2/translations:: translation editor
+http://i18n_db_admin.local/admin/locales:: locales list for the admin
+
+Now create another alias, so that <em>fr.i18n_db_admin.local</em> points to the same IP address. Visit the application at http://fr.i18n_db_admin.local and see the translations in action.
+
+Run memcached and try the application in production mode - you will see that pretty much everything will be cached. After editing the translations, click the relevant "Reload cache" link at the locales page to make your changes visible to visitors.
