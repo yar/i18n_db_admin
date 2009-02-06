@@ -1,6 +1,3 @@
-[submodule "vendor/rails"]
-	path = vendor/rails
-	url = git://github.com/svenfuchs/rails.git
 [submodule "vendor/plugins/i18n_db"]
 	path = vendor/plugins/i18n_db
 	url = git://github.com/yar/i18n_db.git
