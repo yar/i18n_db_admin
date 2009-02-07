@@ -16,34 +16,40 @@ class ApplicationController < ActionController::Base
     @loaded_locales ||= Locale.find(:all)
   end
 
-  def valid_language?(lang)
-    @loaded_locales.any? { |loc| loc.short == lang.to_s[0..1] }
+  # Verifies if the specified locale is among loaded.
+  # locale_str: string with 2-letter language code like "de", "nl"
+  def valid_locale?(locale_str)
+    @loaded_locales.any? { |loc| loc.short == locale_str }
   end
 
-  def set_language(lang)
-    # cookies[:language] = { :value => lang.to_s[0..1], :expires => 1.month.from_now } if cookies[:language] != lang.to_s
-    # Localization.current_language = lang.to_sym
+  # Makes sure that up-to-date translations for the fallback and current locales are
+  # available to the application. Sets the active locale.
+  def set_locale_with_fallback(locale)
+    # Loading the default (fallback) locale
+    set_locale Locale.find_main_cached.short.to_sym
 
-    default_short = :en # Loading the default (fallback) locale
-    set_locale default_short
-
-    locale = @loaded_locales.detect { |loc| loc.short.to_sym == lang }
-    if locale && locale.short.to_sym != default_short
-      set_locale locale.short.to_sym
-      @current_locale = locale
+    # Loading the current locale
+    current_locale = @loaded_locales.detect { |loc| loc.short.to_sym == locale }
+    if current_locale && current_locale != Locale.find_main_cached
+      set_locale current_locale.short.to_sym
+      @current_locale = current_locale
     else
-      @current_locale = @loaded_locales.detect { |loc| loc.short.to_sym == default_short }
+      @current_locale = Locale.find_main_cached
     end
   end
 
+  # Sets the locale basing on the subdomain
   def set_preferred_language
-    if !first_domain_part.blank? && valid_language?(first_domain_part)
-      set_language(first_domain_part.to_sym)
+    if !first_domain_part.blank? && valid_locale?(first_domain_part)
+      set_locale_with_fallback first_domain_part.to_sym
     else
-      set_language :en
+      set_locale_with_fallback Locale.find_main_cached.short.to_sym
     end
   end
   
+  # fr.domain.com => "fr"
+  # www.domain.com => "www"
+  # domain.com => "domain"
   def first_domain_part
     return nil if request.env['HTTP_HOST'].blank?
     @first_domain_part ||= request.env['HTTP_HOST'].split(".").first
