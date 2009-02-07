@@ -8,7 +8,8 @@ A sample application that demonstrates usage of two i18n-related plugins:
 In addition, this sample app contains a convenient ajaxified translations editor and a simple locale list editor.
 
 http://yar.name/pics/i18n_db_admin_editor-20090207-035438.png
-http://yar.name/pics/i18n_db-20090207-042215.png
+
+http://yar.name/pics/i18n_db-20090207-042714.png
 
 After checking out, do not forget to run:
 
